@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { updateProfile } from 'firebase/auth';
-import { auth, fireDB } from '../../fireabase/firebaseConfig'; // Adjust the path according to your project structure
+import { auth, fireDB } from '../../fireabase/FirebaseConfig'; // Adjust the path according to your project structure
 import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import './ProfileForm.css';

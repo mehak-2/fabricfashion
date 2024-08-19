@@ -239,13 +239,11 @@
 // }
 
 // export default Order;
-
 import React, { useContext } from "react";
 import myContext from "../../context/data/myContext";
 import Layout from "../../components/layout/Layout";
 import Loader from "../../components/loader/Loader";
 import border_img from '../../../dist/assets/border_img.jpg';
-
 
 function Order() {
   const userid = JSON.parse(localStorage.getItem("user")).user.uid;
@@ -257,14 +255,12 @@ function Order() {
     <Layout>
       {loading && <Loader />}
       {order.length > 0 ? (
-        <div className="h-full pt-10">
+        <div className="h-full pt-10 px-4 sm:px-6 lg:px-8">
           <h1
+            className="text-center font-bold text-white mb-6"
             style={{
-              color: "white",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "40px",
-              marginBottom: "20px",
+              fontSize: "24px", // Adjusted for mobile
+              marginBottom: "16px", // Adjusted for mobile
             }}
           >
             My Orders
@@ -272,62 +268,56 @@ function Order() {
           {order
             .filter((obj) => obj.userid === userid)
             .map((order) => (
-              <div key={order.id} className="mx-auto max-w-5xl px-6 xl:px-0">
-                <div className="rounded-lg mb-6">
-                  <div
-                    className="flex justify-between rounded-lg p-4 shadow-md"
-                    style={{
-                      backgroundColor: mode === "dark" ? "#282c34" : "",
-                      color: mode === "dark" ? "white" : "white",
-                    }}
-                  >
-                    <div className="flex-shrink-0">
-                      <img
-                        src={order.cartItems[0].imageUrl} // Assuming at least one item exists
-                        alt="product-image"
-                        className="rounded-lg"
-                        style={{
-                          width: "150px",
-                          height: "150px",
-                          backgroundImage: `url(${border_img})`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                          borderRadius: '20px',
-                          padding: '10px',
-                          transition: "background 0.3s ease-in-out",
-                      
-                        }}
-                      />
-                    </div>
-                    <div className="flex-grow flex flex-col justify-center ml-20">
-                      <h2
-                        className="text-[40px] font-bold text-gray-900"
-                        style={{ color: mode === "dark" ? "white" : "white" }}
-                      >
-                        {order.cartItems[0].title}{" "}
-                        {/* Assuming at least one item exists */}
-                      </h2>
-                      <p
-                        className="mt-1 text-[20px] text-gray-700"
-                        style={{ color: mode === "dark" ? "white" : "white" }}
-                      >
-                        {order.cartItems[0].description}
-                      </p>
-                      <p
-                        className="mt-1 text-[20px] text-gray-700"
-                        style={{ color: mode === "dark" ? "white" : "white" }}
-                      >
-                        Rs. {order.cartItems[0].price}
-                      </p>
-                      <p
-                        className="mt-1 text-[20px] text-gray-700"
-                        style={{ color: mode === "dark" ? "white" : "white" }}
-                      >
-                        Status: <span className="px-2 bg-yellow-400 rounded-lg py-1">{order.orderStatus}</span>
-                        <span className="font-bold">{order.status}</span>
-                      </p>
-                    </div>
+              <div key={order.id} className="max-w-5xl mx-auto mb-6">
+                <div
+                  className="flex flex-col sm:flex-row justify-between rounded-lg p-4 shadow-md"
+                  style={{
+                    backgroundColor: mode === "dark" ? "#282c34" : "",
+                    color: mode === "dark" ? "white" : "white",
+                  }}
+                >
+                  <div className="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+                    <img
+                      src={order.cartItems[0].imageUrl} // Assuming at least one item exists
+                      alt="product-image"
+                      className="rounded-lg w-full sm:w-[150px] sm:h-[150px] object-cover"
+                      style={{
+                        backgroundImage: `url(${border_img})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        borderRadius: '20px',
+                        padding: '10px',
+                        transition: "background 0.3s ease-in-out",
+                      }}
+                    />
+                  </div>
+                  <div className="flex-grow flex flex-col justify-center sm:ml-6 text-center sm:text-left">
+                    <h2
+                      className="text-lg sm:text-2xl font-bold text-gray-900"
+                      style={{ color: mode === "dark" ? "white" : "white" }}
+                    >
+                      {order.cartItems[0].title}{" "}
+                      {/* Assuming at least one item exists */}
+                    </h2>
+                    <p
+                      className="mt-1 text-sm sm:text-base text-gray-700"
+                      style={{ color: mode === "dark" ? "white" : "white" }}
+                    >
+                      {order.cartItems[0].description}
+                    </p>
+                    <p
+                      className="mt-1 text-sm sm:text-base text-gray-700"
+                      style={{ color: mode === "dark" ? "white" : "white" }}
+                    >
+                      Rs. {order.cartItems[0].price}
+                    </p>
+                    <p
+                      className="mt-1 text-sm sm:text-base text-gray-700"
+                      style={{ color: mode === "dark" ? "white" : "white" }}
+                    >
+                      Status: <span className="px-2 bg-yellow-400 rounded-lg py-1">{order.orderStatus}</span>
+                    </p>
                   </div>
                 </div>
               </div>

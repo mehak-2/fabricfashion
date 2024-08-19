@@ -61,7 +61,7 @@ function ProductInfo() {
   return (
     <Layout>
       <section className="text-gray-600 body-font overflow-hidden bg-black">
-        <div className="container px-40 py-10 mx-auto">
+        <div className="container px-5 py-10 mx-auto sm:px-20">
           {loading ? (
             <p className="text-white">Loading...</p>
           ) : products && (
@@ -113,7 +113,7 @@ function ProductInfo() {
                   )}
                   <div className="flex flex-col mb-4">
                     {/* Grid Container for Select and Buttons */}
-                    <div className="grid grid-cols-2 gap-4 w-full">
+                    <div className="grid grid-cols-2 gap-4 w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                       {/* Size Selector Dropdown */}
                       <div className="relative w-full">
                         <select
@@ -158,6 +158,7 @@ function ProductInfo() {
                           borderRadius: '70px',
                           padding: '10px',
                           transition: "background 0.3s ease-in-out",
+                          width: '100%',
                         }}
                       >
                         Add To Cart
@@ -180,6 +181,7 @@ function ProductInfo() {
                           borderRadius: '70px',
                           padding: '10px',
                           transition: "background 0.3s ease-in-out",
+                          width: '100%',
                         }}
                       >
                         Order Now
@@ -197,6 +199,7 @@ function ProductInfo() {
                           borderRadius: '70px',
                           padding: '10px',
                           transition: "background 0.3s ease-in-out",
+                          width: '100%',
                         }}
                       >
                         Add To Wishlist

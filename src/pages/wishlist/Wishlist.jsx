@@ -2,36 +2,27 @@ import React, { useContext, useEffect, useState } from "react";
 import myContext from "../../context/data/myContext";
 import Layout from "../../components/layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart, addToCart } from "../../redux/cartSlice"; // Ensure addToCart is imported
+import { deleteFromCart, addToCart } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../fireabase/FirebaseConfig";
-import cart_img from "../../../dist/assets/cart_image.png"; // Replace with the correct path to your heart image
-import border_img from "../../../dist/assets/border_img.jpg"; // Replace with the correct path to your border image
+import cart_img from "../../../dist/assets/cart_image.png";
+import border_img from "../../../dist/assets/border_img.jpg";
 import { useNavigate } from "react-router-dom";
-
 
 function Wishlist() {
   const context = useContext(myContext);
   const { mode } = context;
   const navigate = useNavigate();
 
-
   const dispatch = useDispatch();
-
   const cartItems = useSelector((state) => state.cart);
-  console.log(cartItems);
-
-  const deleteCart = (item) => {
-    dispatch(deleteFromCart(item));
-    toast.success("Deleted from cart");
-  };
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const [totalAmout, setTotalAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     let temp = 0;
@@ -39,12 +30,10 @@ function Wishlist() {
       temp += parseInt(cartItem.price, 10);
     });
     setTotalAmount(temp);
-    console.log(temp);
   }, [cartItems]);
 
   const shipping = 100;
-
-  const grandTotal = shipping + totalAmout;
+  const grandTotal = shipping + totalAmount;
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -92,11 +81,7 @@ function Wishlist() {
     try {
       const orderRef = collection(fireDB, "orders");
       const docRef = await addDoc(orderRef, orderInfo);
-
-      const orderId = docRef.id;
-
       localStorage.setItem("cart", JSON.stringify([]));
-
       toast.success("Order placed successfully");
     } catch (error) {
       console.log(error);
@@ -123,32 +108,32 @@ function Wishlist() {
               return (
                 <div
                   key={index}
-                  className="justify-between mb-6 rounded-lg drop-shadow-xl bg-black p-6 sm:flex sm:justify-start"
+                  className="mb-6 rounded-lg drop-shadow-xl bg-black p-6 sm:flex sm:justify-between"
                   style={{
                     backgroundColor: mode === "dark" ? "rgb(32 33 34)" : "",
                     color: mode === "dark" ? "white" : "",
                   }}
                 >
-                  <img
-                     style={{
-                          width: "250px",
-                          height: "150px",
-                          marginRight: "10px",
-                          backgroundImage: `url(${border_img})`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                          borderRadius: '20px',
-                          padding: '10px',
-                          transition: "background 0.3s ease-in-out",
-                        }}
-                    
-                    src={imageUrl}
-                    alt="product-image"
-                    className="w-full rounded-lg sm:w-40"
-                  />
-                  <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                    <div className="mt-5 sm:mt-0">
+                  <div className="flex flex-col sm:flex-row items-center">
+                    <img
+                      style={{
+                        width: "100%",
+                        maxWidth: "250px",
+                        height: "150px",
+                        marginRight: "10px",
+                        backgroundImage: `url(${border_img})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        borderRadius: "20px",
+                        padding: "10px",
+                        transition: "background 0.3s ease-in-out",
+                      }}
+                      src={imageUrl}
+                      alt="product-image"
+                      className="rounded-lg"
+                    />
+                    <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
                       <h2
                         className="text-lg font-bold text-white"
                         style={{ color: mode === "dark" ? "white" : "" }}
@@ -169,32 +154,30 @@ function Wishlist() {
                       </p>
                     </div>
                   </div>
-                  {/* Add To Cart Button */}
                   <button
-                   className="relative text-black py-2 px-6 focus:outline-none border-0 rounded-full w-[350px] mt-10"
-  style={{
-                          backgroundImage: `url(${border_img})`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                          borderRadius: '70px',
-                          height: "40px",
-                          padding: '10px',
-                          transition: "background 0.3s ease-in-out",
-                        }}
-  onClick={() => {
-    dispatch(addToCart(item));
-    navigate("/cart"); // This will navigate to the cart page
-  }}
->
-  Add To Cart
-  <img
-    src={cart_img}
-    alt="Heart Icon"
-    className="absolute right-6 top-1/2 transform -translate-y-1/2 w-5 h-5"
-  />
-</button>
-
+                    className="relative mt-4 sm:mt-0 text-black py-2 px-6 focus:outline-none border-0 rounded-full w-full sm:w-[350px]"
+                    style={{
+                      backgroundImage: `url(${border_img})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      borderRadius: "70px",
+                      height: "40px",
+                      padding: "10px",
+                      transition: "background 0.3s ease-in-out",
+                    }}
+                    onClick={() => {
+                      dispatch(addToCart(item));
+                      navigate("/cart");
+                    }}
+                  >
+                    Add To Cart
+                    <img
+                      src={cart_img}
+                      alt="Heart Icon"
+                      className="absolute right-6 top-1/2 transform -translate-y-1/2 w-5 h-5"
+                    />
+                  </button>
                 </div>
               );
             })}

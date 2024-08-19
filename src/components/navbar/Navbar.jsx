@@ -49,120 +49,133 @@ function Navbar() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel
-                className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl"
-                style={{
-                  backgroundColor: mode === "dark" ? "rgb(40, 44, 52)" : "",
-                  color: mode === "dark" ? "white" : "",
-                }}
-              >
-                <div className="flex px-4 pb-2 pt-28">
-                  <button
-                    type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
-                    onClick={() => setOpen(false)}
-                  >
-                    <span className="sr-only">Close menu</span>
-                    <RxCross2 />
-                  </button>
-                </div>
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <Link
-                    to={"/allproducts"}
-                    className="text-sm font-medium text-black hover:text-orange"
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    All Products
-                  </Link>
-                  
+             <Dialog.Panel
+  className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl"
+  style={{
+    backgroundColor: mode === "dark" ? "rgb(40, 44, 52)" : "",
+    color: mode === "dark" ? "white" : "",
+  }}
+>
+  <div className="flex px-4 pb-2 pt-28">
+    <button
+      type="button"
+      className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+      onClick={() => setOpen(false)}
+    >
+      <span className="sr-only">Close menu</span>
+      <RxCross2 />
+    </button>
+  </div>
+  
+  <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+    <Link
+      to={"/allproducts"}
+      className="text-sm font-medium text-black hover:text-orange"
+      style={{ color: mode === "dark" ? "white" : "" }}
+    >
+      All Products
+    </Link>
 
-                  {user && user?.user?.email !== "mehak@gmail.com" && (
-                    <div className="flow-root">
-                      <Link
-                        to={"/order"}
-                        className="-m-2 block p-2 font-medium text-black"
-                        style={{ color: mode === "dark" ? "white" : "" }}
-                      >
-                        Order
-                      </Link>
-                    </div>
-                  )}
+    {user && user?.user?.email !== "mehak@gmail.com" && (
+      <div className="flow-root">
+        <Link
+          to={"/order"}
+          className="-m-2 block p-2 font-medium text-black"
+          style={{ color: mode === "dark" ? "white" : "" }}
+        >
+          Order
+        </Link>
+      </div>
+    )}
 
-                  {user?.user?.email === "mehak@gmail.com" && (
-                    <div className="flow-root">
-                      <Link
-                        to={"/dashboard"}
-                        className="-m-2 block p-2 font-medium text-black"
-                        style={{ color: mode === "dark" ? "white" : "" }}
-                      >
-                        Admin
-                      </Link>
-                    </div>
-                  )}
+    {user?.user?.email === "mehak@gmail.com" && (
+      <div className="flow-root">
+        <Link
+          to={"/dashboard"}
+          className="-m-2 block p-2 font-medium text-black"
+          style={{ color: mode === "dark" ? "white" : "" }}
+        >
+          Admin
+        </Link>
+      </div>
+    )}
 
-                  {user ? (
-                    <div className="flow-root">
-                      <a
-                        onClick={logout}
-                        className="-m-2 block p-2 font-medium text-black cursor-pointer"
-                        style={{ color: mode === "dark" ? "white" : "" }}
-                      >
-                        Logout
-                      </a>
-                    </div>
-                  ) : (
-                    <>
-                   
-                      <div className="flow-root">
-                        <Link
-                          to={"/cart"}
-                          className="-m-2 block p-2 font-medium text-black cursor-pointer flex items-center space-x-2"
-                          style={{ color: mode === "dark" ? "white" : "" }}
-                        >
-                          <img
-                            src={cart_img}
-                            alt="Cart Icon"
-                            className="w-5 h-5" // Adjust size as needed
-                          />
-                          <span>Cart</span>
-                        </Link>
-                      </div>   
-                      <div className="flow-root">
-                        <Link
-                          to={"/profile"}
-                          className="-m-2 block p-2 font-medium text-black cursor-pointer flex items-center space-x-2"
-                          style={{ color: mode === "dark" ? "white" : "" }}
-                        >
-                          
-                          <span>Profile</span>
-                        </Link>
-                      </div>   
+    {user ? (
+      <>
+        <div className="flow-root">
+          <Link
+            to={"/profile"}
+            className="-m-2 block p-2 font-medium text-black cursor-pointer"
+            style={{ color: mode === "dark" ? "white" : "" }}
+          >
+            Profile
+          </Link>
+        </div>
+        <div className="flow-root">
+          <Link
+            to={"/profileform"}
+            className="-m-2 block p-2 font-medium text-black cursor-pointer"
+            style={{ color: mode === "dark" ? "white" : "" }}
+          >
+            Update Profile
+          </Link>
+        </div>
+        <div className="flow-root">
+          <Link
+            to={"/wishlist"}
+            className="-m-2 block p-2 font-medium text-black cursor-pointer"
+            style={{ color: mode === "dark" ? "white" : "" }}
+          >
+            Wishlist
+          </Link>
+        </div>
+        <div className="flow-root">
+          <Link
+            to={"/cart"}
+            className="-m-2 block p-2 font-medium text-black cursor-pointer flex items-center space-x-2"
+            style={{ color: mode === "dark" ? "white" : "" }}
+          >
+            <img
+              src={cart_img}
+              alt="Cart Icon"
+              className="w-5 h-5" // Adjust size as needed
+            />
+            <span>Cart</span>
+          </Link>
+        </div>
+        <div className="flow-root">
+          <a
+            onClick={logout}
+            className="-m-2 block p-2 font-medium text-black cursor-pointer"
+            style={{ color: mode === "dark" ? "white" : "" }}
+          >
+            Logout
+          </a>
+        </div>
+      </>
+    ) : (
+      <div className="flow-root">
+        <Link
+          to={"/signup"}
+          className="-m-2 block p-2 font-medium text-black cursor-pointer flex items-center space-x-2"
+          style={{ color: mode === "dark" ? "white" : "" }}
+        >
+          <FaUserCircle className="w-5 h-5" />
+          <span>Login/Signup</span>
+        </Link>
+      </div>
+    )}
+  </div>
 
-                      <div className="flow-root">
-                        <Link
-                          to={"/signup"}
-                          className="-m-2 block p-2 font-medium text-black cursor-pointer flex items-center space-x-2"
-                          style={{ color: mode === "dark" ? "white" : "" }}
-                        >
-                          <FaUserCircle className="w-5 h-5" />
-                          <span>Login/Signup</span>
-                        </Link>
-                      </div>
-                      
-                    </>
-                  )}
-                </div>
-                
+  <div className="px-4 py-6">
+    <input
+      type="text"
+      placeholder="Search..."
+      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
+    />
+  </div>
+</Dialog.Panel>
 
-                <div className="px-4 py-6">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
-                  />
-                </div>
-              
-              </Dialog.Panel>
             </Transition.Child>
           </div>
         </Dialog>

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../../context/data/myContext';
 import borderImage from '../../../dist/assets/border_img.jpg'; // Adjust path based on your project structure
 
-
 function Filter({ setFilterType, setFilterFabric, setFilterPrice, setSortPrice }) {
   const context = useContext(myContext);
   const { mode, product } = context;
@@ -31,29 +30,28 @@ function Filter({ setFilterType, setFilterFabric, setFilterPrice, setSortPrice }
   }, [product]);
 
   return (
-    <div className="w-full sm:w-96">
+    <div className="w-full sm:w-80 md:w-96">
       <div
         style={{
           backgroundImage: `url(${borderImage})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           borderRadius: '20px',
-          width: "300px",
-          height: "500px",
+          width: "100%",
+          height: "auto",
           padding: '10px',
         }}
-        className=" h-96 container mx-auto px-4 mt-5"
+        className="container mx-auto px-4 mt-5"
       >
         <div
-          className="h-full p-5 rounded-lg bg-gray-100 drop-shadow-xl border border-gray-200"
+          className="p-5 rounded-lg bg-gray-100 drop-shadow-xl border border-gray-200"
           style={{
             backgroundColor: mode === "dark" ? "#282c34" : "",
             color: mode === "dark" ? "white" : "",
           }}
         >
-        <p className="font-medium mb-4">Price</p>
+          <p className="font-medium mb-4">Price</p>
           <div className="flex items-center justify-between mt-4">
-            
             <select
               onChange={handlePriceChange}
               className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0 focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"

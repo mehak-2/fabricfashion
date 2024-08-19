@@ -1,124 +1,137 @@
-import React, { useContext } from "react";
-import myContext from "../../context/data/myContext";
+import React, { Component } from "react";
+import borderImage from '../../../dist/assets/border_img.jpg'; // Adjust path based on your project structure
+import suit from '../../../dist/assets/suit.jpg';
+import ethnic from '../../../dist/assets/ethnic.jpg';
+import jewellery from '../../../dist/assets/sjewellery.jpg';
+import anarkali from '../../../dist/assets/anarkali.jpg';
+import sharara from '../../../dist/assets/sharara.jpg';
 
-function Track() {
-  const context = useContext(myContext);
-  const { mode } = context;
 
-  return (
-    <div>
-      <h1
-        style={{
-          fontFamily: 'Arial, sans-serif',
-          fontSize: '40px', // Set the font size for the main heading
-          fontWeight: 'bold',
-          textAlign: 'center',
-          margin: '40px 0' // Increased margin for better spacing
-        }}
-      >
-        Features
-      </h1>
-      <section>
-        <div className="container mx-auto px-5 py-10">
-          <div className="flex flex-wrap -m-4 text-center">
-            <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
-              <div
-                className="card border-2 hover:shadow-2xl border-gray-200 bg-gray-100 shadow-lg px-4 py-8 rounded-lg transition-all duration-300 transform hover:-translate-y-3 hover:scale-105"
-                style={{
-                  backgroundColor: mode === "dark" ? "rgb(46 49 55)" : "",
-                  color: mode === "dark" ? "white" : "",
-                  minHeight: '250px' // Added min-height for better visual structure
-                }}
-              >
-                <svg
-                  className="icon w-12 h-12 mb-3 inline-block"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 512"
-                  style={{ color: '#52525b' }}
-                >
-                  <path d="M211.8 0c7.8 0 14.3 5.7 16.7 13.2C240.8 51.9 277.1 80 320 80s79.2-28.1 91.5-66.8C413.9 5.7 420.4 0 428.2 0l12.6 0c22.5 0 44.2 7.9 61.5 22.3L628.5 127.4c6.6 5.5 10.7 13.5 11.4 22.1s-2.1 17.1-7.8 23.6l-56 64c-11.4 13.1-31.2 14.6-44.6 3.5L480 197.7 480 448c0 35.3-28.7 64-64 64l-192 0c-35.3 0-64-28.7-64-64l0-250.3-51.5 42.9c-13.3 11.1-33.1 9.6-44.6-3.5l-56-64c-5.7-6.5-8.5-15-7.8-23.6s4.8-16.6 11.4-22.1L137.7 22.3C155 7.9 176.7 0 199.2 0l12.6 0z" />
-                </svg>
-                <h2
-                  className="title-font font-medium text-lg text-red-700"
-                  style={{
-                    fontSize: '24px', // Set the font size for the subheading
-                    color: mode === "dark" ? "white" : ""
-                  }}
-                >
-                  Premium Tshirts
-                </h2>
-                <p className="leading-relaxed" style={{ fontSize: '16px' }}>
-                  Our T-Shirts are 100% made of cotton.
-                </p>
+class Track extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hoveredIndex: null,
+    };
+  }
+
+  handleMouseEnter = (index) => {
+    this.setState({ hoveredIndex: index });
+  };
+
+  handleMouseLeave = () => {
+    this.setState({ hoveredIndex: null });
+  };
+
+  render() {
+    const { hoveredIndex } = this.state;
+
+    return (
+      <div>
+        <h1 style={styles.heading}>SHOP LATEST PAKISTANI SUITS</h1>
+        <div style={styles.container}>
+          {[
+            // First row of images
+            {
+              src: suit,
+            
+            },
+            {
+              src: ethnic,
+            },
+            {
+              src: "https://thelibas.com/wp-content/uploads/2021/06/303.jpg",
+        
+            },
+            // Second row of images
+            {
+              src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpSm_URTTGz0PkdjFS7YIdWg3xUTgE7k_AhOsJbq-s6B7VGI1-T6ACAnVkyytRk3X9h1Q&usqp=CAU",
+              
+            },
+            {
+              src: "https://palakfashionbsk.com/media/catalog/product/cache/1/image/abef50ec66cdaae8f2c2d4915b6f160f/i/m/img-20220627-wa0135_1.jpg",
+            
+            },
+            {
+              src: "https://i.pinimg.com/236x/d3/96/ae/d396ae0c1e577e1e9dc809e64141c934.jpg",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.slide,
+                ...(hoveredIndex === index ? styles.slideHover : {}),
+              }}
+              onMouseEnter={() => this.handleMouseEnter(index)}
+              onMouseLeave={this.handleMouseLeave}
+            >
+              <div style={styles.imageDiv}>
+                <img src={item.src} alt={item.text} style={styles.image} />
+                {hoveredIndex === index && (
+                  <div style={styles.text}>{item.text}</div>
+                )}
               </div>
             </div>
-            <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
-              <div
-                className="card border-2 hover:shadow-2xl border-gray-200 bg-gray-100 shadow-lg px-4 py-8 rounded-lg transition-all duration-300 transform hover:-translate-y-3 hover:scale-105"
-                style={{
-                  backgroundColor: mode === "dark" ? "rgb(46 49 55)" : "",
-                  color: mode === "dark" ? "white" : "",
-                  minHeight: '250px' // Added min-height for better visual structure
-                }}
-              >
-                <svg
-                  className="icon w-12 h-12 mb-3 inline-block"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                  style={{ color: '#52525b' }}
-                >
-                  <path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64l0 48-128 0 0-48zm-48 48l-64 0c-26.5 0-48 21.5-48 48L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-208c0-26.5-21.5-48-48-48l-64 0 0-48C336 50.1 285.9 0 224 0S112 50.1 112 112l0 48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
-                </svg>
-                <h2
-                  className="title-font font-medium text-lg text-red-700"
-                  style={{
-                    fontSize: '24px', // Set the font size for the subheading
-                    color: mode === "dark" ? "white" : ""
-                  }}
-                >
-                  Hassle Free Delivery
-                </h2>
-                <p className="leading-relaxed" style={{ fontSize: '16px' }}>
-                  We have best delivery partners.
-                </p>
-              </div>
-            </div>
-            <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
-              <div
-                className="card border-2 hover:shadow-2xl border-gray-200 bg-gray-100 shadow-lg px-4 py-8 rounded-lg transition-all duration-300 transform hover:-translate-y-3 hover:scale-105"
-                style={{
-                  backgroundColor: mode === "dark" ? "rgb(46 49 55)" : "",
-                  color: mode === "dark" ? "white" : "",
-                  minHeight: '250px' // Added min-height for better visual structure
-                }}
-              >
-                <svg
-                  className="icon w-12 h-12 mb-3 inline-block"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                  style={{ color: '#52525b' }}
-                >
-                  <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-                </svg>
-                <h2
-                  className="title-font font-medium text-lg text-red-700"
-                  style={{
-                    fontSize: '24px', // Set the font size for the subheading
-                    color: mode === "dark" ? "white" : ""
-                  }}
-                >
-                  Best Discount
-                </h2>
-                <p className="leading-relaxed" style={{ fontSize: '16px' }}>
-                  We provide best discount offers.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    );
+  }
 }
+
+const styles = {
+  heading: {
+    fontFamily: "fantasy", // Set the font family
+    fontSize: "50px", // Set the font size
+    textAlign: "center", // Center align the heading
+    margin: "20px 0", // Add margin for spacing
+    color: "white",
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap", // Allow items to wrap into rows
+    gap: "30px", // Space between images
+    padding: "0", // Remove padding to avoid extra space
+    justifyContent: "center", // Center align items in the container
+  },
+  slide: {
+    position: "relative",
+    flex: "0 0 calc(33.333% - 40px)", // Three items per row with gaps
+    overflow: "hidden",
+    borderRadius: "10px", // Optional: rounded corners
+    transition: "box-shadow 0.3s ease-in-out", // Smooth transition for box-shadow
+  },
+  imageDiv: {
+    position: 'relative', // Position the text over the image
+    padding: "10px", // Padding to create space around the image
+    borderRadius: '10px', // Optional: rounded corners
+    backgroundImage: `url(${borderImage})`, // Use the imported image
+    backgroundRepeat: 'round', // Repeat the image to cover the area
+  },
+  image: {
+    width: "100%",
+    height: "300px", // Fixed height to ensure equal height
+    objectFit: "cover", // Ensures the image covers the area without distortion
+    display: "block",
+  },
+  // text: {
+  //   position: "absolute",
+  //   bottom: "10px",
+  //   left: "10px",
+  //   right: "10px",
+  //   fontWeight: "bold",
+  //   color: "gold", // Set text color to gold
+  //   fontFamily: "Times, Times New Roman, Georgia, serif", // Set the font family
+  //   backgroundColor: "black", // Background color for the text box
+  //   padding: "10px",
+  //   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)", // Optional: box shadow for better visibility
+  //   textAlign: "center", // Center align text
+  //   opacity: 1, // Ensure text is visible
+  //   transition: "opacity 0.3s ease-in-out", // Smooth transition for text visibility
+  // },
+  slideHover: {
+    boxShadow: "0 8px 12px rgba(0, 0, 0, 0.3)", // Box-shadow on hover
+  },
+};
 
 export default Track;

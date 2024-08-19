@@ -1,22 +1,47 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+// // firebaseConfig.js
+
+// import { initializeApp } from 'firebase/app';
+// import { getFirestore } from 'firebase/firestore';
+// import { getAuth } from 'firebase/auth';
+
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//  apiKey: "AIzaSyC1-gHRiLTyPDa-Xn-GjHJLRas03whG2Iw",
+//   authDomain: "fashionapp-ba61f.firebaseapp.com",
+//   projectId: "fashionapp-ba61f",
+//   storageBucket: "fashionapp-ba61f.appspot.com",
+//   messagingSenderId: "1006534794013",
+//   appId: "1:1006534794013:web:2ed1073894e59bdcc41ff4"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+
+// // Initialize Firestore and Auth
+// const fireDB = getFirestore(app);
+// const auth = getAuth(app);
+
+// export { fireDB, auth };
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
- apiKey: "AIzaSyCxnnHmBvTR0nLgmknMCNCb8QyEeLyJ0DE",
-  authDomain: "ecommerceshop-1ee8b.firebaseapp.com",
-  projectId: "ecommerceshop-1ee8b",
-  storageBucket: "ecommerceshop-1ee8b.appspot.com",
-  messagingSenderId: "1012136715188",
-  appId: "1:1012136715188:web:6a9d92844a393cb17308e1",
+  apiKey: "AIzaSyC1-gHRiLTyPDa-Xn-GjHJLRas03whG2Iw",
+  authDomain: "fashionapp-ba61f.firebaseapp.com",
+  projectId: "fashionapp-ba61f",
+  storageBucket: "fashionapp-ba61f.appspot.com",
+  messagingSenderId: "1006534794013",
+  appId: "1:1006534794013:web:2ed1073894e59bdcc41ff4"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize Firestore and Auth
 const fireDB = getFirestore(app);
 const auth = getAuth(app);
 
 export { fireDB, auth };
+

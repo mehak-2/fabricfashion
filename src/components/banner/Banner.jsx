@@ -1,17 +1,18 @@
 import React from 'react';
 import './Banner.css';
+import car_img from "/dist/assets/car_img.png"; 
+import heart_img from "/dist/assets/heart_img.png";
 
 const Banner = () => {
   return (
     <div className='offers'>
       <div className='offers-left'>
-        <h1>Exclusive</h1>
-        <h1>Offers for you</h1>
-        <p>ONLY ON BEST SELLERS PRODUCT</p>
-        <button>Check Now</button>
+        <img src={car_img} alt="Car" /> {/* Use the imported image variable */}
+        <h1>Fast Delivery</h1>
       </div>
       <div className='offers-right'>
-        <img src="https://media.istockphoto.com/id/863190232/photo/happy-girl-shopping-in-the-fashion-store.webp?b=1&s=170667a&w=0&k=20&c=uXAmLoZ-OLOtvh8vEhlLDNrZNgL5Cr6nYrcZH61wSzQ=" alt="Cart" />
+        <img src={heart_img} alt="Heart" /> {/* Use the imported image variable */}
+        <h1>Latest Fashion</h1>
       </div>
     </div>
   );

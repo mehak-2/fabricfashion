@@ -6,6 +6,7 @@ export default {
       colors: {
         orange: "#FB5C03",
         blue: "#011F9E",
+        gold: '#FFD700', // Custom golden color
       },
     },
   },

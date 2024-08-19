@@ -1,7 +1,22 @@
-import { createContext } from "react";
+import React, { createContext, useState } from 'react';
 
+const MyContext = createContext();
 
-//with context api we can share data with multiple component direct sharing from parent to child componenets
-const myContext = createContext();
+export const MyProvider = ({ children }) => {
+  const [status, setStatus] = useState({});
 
-export default myContext;
+  const updateStatus = (orderId, newStatus) => {
+    setStatus((prevStatus) => ({
+      ...prevStatus,
+      [orderId]: newStatus,
+    }));
+  };
+
+  return (
+    <MyContext.Provider value={{ status, updateStatus }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
+
+export default MyContext;

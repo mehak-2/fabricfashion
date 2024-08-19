@@ -1,137 +1,117 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Filter from "../../components/filter/Filter";
-import ProductCard from "../../components/productCard/ProductCard";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/data/myContext";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import { toast } from "react-toastify";
 
 function Allproducts() {
   const context = useContext(myContext);
-  const {
-    mode,
-    product,
-    searchkey,
-    setSearchkey,
-    filterType,
-    setFilterType,
-    filterPrice,
-    setFilterPrice,
-  } = context;
+  const { mode, product, searchkey } = context;
+
+  const [filterType, setFilterType] = useState("");
+  const [filterFabric, setFilterFabric] = useState("");
+  const [filterPrice, setFilterPrice] = useState("");
+  const [sortPrice, setSortPrice] = useState("low");
 
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
-  // console.log(cartItems);
 
   const addCart = (product) => {
     dispatch(addToCart(product));
-    toast.success("add to cart");
+    toast.success("Added to cart");
   };
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const filteredProducts = product
+    .filter((obj) => obj.title.toLowerCase().includes(searchkey.toLowerCase()))
+    .filter((obj) => obj.category.toLowerCase().includes(filterType.toLowerCase()))
+    .filter((obj) => (filterFabric ? (obj.fabric || "").toLowerCase() === filterFabric.toLowerCase() : true))
+    .filter((obj) => (filterPrice ? obj.price <= parseFloat(filterPrice) : true));
+
+  const sortedProducts = filteredProducts.sort((a, b) => {
+    if (sortPrice === "low") {
+      return a.price - b.price;
+    } else if (sortPrice === "high") {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
   return (
     <Layout>
-      <Filter />
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-8 md:py-16 mx-auto">
-          <div className="lg:w-1/2 w-full mb-6 lg:mb-10">
-            <h1
-              className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
-              style={{ color: mode === "dark" ? "white" : "#011F9E" }}
-            >
-              Our Latest Collection
-            </h1>
-            <div
-              className="h-1 w-20  rounded"
-              style={{ backgroundColor: "#FB5C03" }}
-            ></div>
-          </div>
-
-          <div className="flex flex-wrap -m-4">
-            {product
-              .filter((obj) => obj.title.toLowerCase().includes(searchkey))
-              .filter((obj) => obj.category.toLowerCase().includes(filterType))
-              .filter((obj) => obj.price.includes(filterPrice))
-              .map((item, index) => {
-                const { title, price, description, imageUrl, id } = item;
+      <div className="flex flex-col sm:flex-row" style={{ backgroundColor: "black", minHeight: "100vh" }}>
+        <div className="h-full sticky top-24 my-12">
+          <Filter 
+            setFilterType={setFilterType} 
+            setFilterFabric={setFilterFabric} 
+            setFilterPrice={setFilterPrice} 
+            setSortPrice={setSortPrice}
+          />
+        </div>
+        <div className="text-red-600 body-font flex-grow">
+          <div className="container px-5 py-8 md:py-16 mx-auto">
+            <h1 className="text-gold mb-4">All Products</h1>
+            <div className="flex flex-wrap -m-4">
+              {sortedProducts.map((item) => {
+                const { title, price, imageUrl, id } = item;
                 return (
                   <div
-                    onClick={() =>
-                      (window.location.href = `/productinfo/${id}`)
-                    }
-                    key={index}
-                    className="p-4 md:w-1/4  drop-shadow-lg "
+                    onClick={() => (window.location.href = `/productinfo/${id}`)}
+                    key={id}
+                    className="p-4 md:w-1/4 drop-shadow-lg cursor-pointer"
                   >
                     <div
-                      className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out    border-gray-200 border-opacity-60 rounded-2xl overflow-hidden"
+                      className="h-full transition-shadow duration-300 ease-in-out rounded-2xl overflow-hidden"
                       style={{
-                        backgroundColor:
-                          mode === "dark" ? "rgb(46 49 55)" : "#f2f4fe",
-                        color: mode === "dark" ? "white" : "#FB5C03",
+                        backgroundColor: mode === "dark" ? "rgb(46 49 55)" : "transparent",
+                        color: mode === "dark" ? "white" : "black",
                       }}
                     >
-                      <div className="flex justify-center cursor-pointer">
-                        <img
-                          className="rounded-2xl w-full max-w-xs h-80 p-2 hover:scale-110 transition-transform duration-300 ease-in-out object-contain object-center mx-auto"
-                          src={imageUrl}
-                          alt="blog"
-                        />
-                      </div>
-                      <div className="p-5 border-t-2">
-                        <h2
-                          className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
-                          style={{ color: mode === "dark" ? "white" : "" }}
-                        ></h2>
-                        <h1
-                          className="title-font text-lg font-medium text-gray-900 mb-3"
-                          style={{
-                            color: mode === "dark" ? "white" : "#020a2b",
-                          }}
-                        >
-                          {title}
-                        </h1>
-                        {/* <p className="leading-relaxed mb-3">{item.description.}</p> */}
-                        <p
-                          className="leading-relaxed mb-3"
-                          style={{ color: mode === "dark" ? "white" : "" }}
-                        >
-                          ₹{price}
-                        </p>
-                        <div className=" flex justify-center">
-                          <button
-                            type="button"
-                            className="focus:outline-none text-white bg-gradient-to-r from-[#f4d3bf] to-[#2f4fe1] hover:bg-blue-500 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-60 py-2"
+                      <div className="flex flex-col h-full">
+                        <div className="flex justify-center items-center flex-grow">
+                          <img
+                            className="w-full h-80 object-cover rounded-lg"
+                            src={imageUrl}
+                            alt={title}
+                            style={{ borderRadius: "10px" }}
+                          />
+                        </div>
+                        <div className="p-5">
+                          <h1
+                            className="title-font text-lg font-medium mb-3"
                             style={{
-                              background:
-                                "linear-gradient(to right, #f19257, #2f4fe1)",
-                              transition: "background 0.3s ease-in-out",
+                              color: mode === "dark" ? "white" : "white",
                             }}
-                            onMouseEnter={(e) =>
-                              (e.target.style.background =
-                                "linear-gradient(to right, #ff0000, #0000ff)")
-                            }
-                            onMouseLeave={(e) =>
-                              (e.target.style.background =
-                                "linear-gradient(to right, #f19257, #2f4fe1)")
-                            }
                           >
-                            Buy now
-                          </button>
+                            {title}
+                          </h1>
+                          <p
+                            className="leading-relaxed mb-3"
+                            style={{
+                              color: mode === "dark" ? "white" : "white",
+                            }}
+                          >
+                            Rs.{price}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 );
               })}
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </Layout>
   );
 }

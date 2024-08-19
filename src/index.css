@@ -35,3 +35,7 @@ option:focus {
 transform: translateY(-5px);
 transition: all 0.2s;
 }
+
+/* Add these styles to your CSS file */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";

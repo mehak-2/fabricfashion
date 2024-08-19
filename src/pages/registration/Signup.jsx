@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../../fireabase/FirebaseConfig";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import Loader from "../../components/loader/Loader";
+import borderImage from '../../../dist/assets/border_img.jpg';
+
 
 function Signup() {
   const [name, setName] = useState("");
@@ -51,9 +53,12 @@ function Signup() {
       {loading && <Loader />}
       <div
         className=" px-10 py-10 rounded-xl "
-        style={{ background: "#9ca3af" }}
+        style={{  
+          backgroundColor: "black",
+           }}
       >
         <div className="">
+        
           <h1 className="text-center text-white text-2xl mb-4 font-bold">
             Signup
           </h1>
@@ -64,7 +69,7 @@ function Signup() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             name="name"
-            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-blue placeholder:text-gray-400 outline-none"
+            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-black placeholder:text-gray-400 outline-none"
             placeholder="Name"
           />
         </div>
@@ -75,7 +80,7 @@ function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
-            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-blue placeholder:text-gray-400 outline-none"
+            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-black placeholder:text-gray-400 outline-none"
             placeholder="Email"
           />
         </div>
@@ -84,14 +89,21 @@ function Signup() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-blue placeholder:text-gray-400 outline-none"
+            className=" bg-gray-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-black placeholder:text-gray-400 outline-none"
             placeholder="Password"
           />
         </div>
         <div className=" flex justify-center mb-3">
           <button
+          style={{
+            backgroundImage: `url(${borderImage})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          borderRadius: '20px',
+          padding: '5px'
+          }}
             onClick={signup}
-            className=" bg-orange w-full text-white font-bold  px-2 py-2 rounded-lg"
+            className=" bg-orange w-full text-black font-bold  px-2 py-2 rounded-lg"
           >
             Signup
           </button>
@@ -99,7 +111,7 @@ function Signup() {
         <div>
           <h2 className="text-white">
             Have an account{" "}
-            <Link className=" text-orange font-bold" to={"/login"}>
+            <Link className=" text-yellow-500 font-bold" to={"/login"}>
               Login
             </Link>
           </h2>

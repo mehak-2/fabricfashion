@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
 import HeroSection from "../../components/heroSection/HeroSection";
-import Filter from "../../components/filter/Filter";
 import ProductCard from "../../components/productCard/ProductCard";
 import Track from "../../components/track/Track";
 import Testimonial from "../../components/testimonial/Testimonial";
@@ -10,12 +9,19 @@ import Banner from "../../components/banner/Banner";
 import Popular from "../../components/popular/Popular";
 import Card from "../../components/card/Card";
 import Categories from "../../components/categories/Categories";
+import NavbarTypes from "../../components/navbar/NavbarTypes";
 
 function Home() {
   return (
+    <div style={{ backgroundColor: 'black', minHeight: '100vh' }}> {/* Set background color here */}
     <Layout>
+    <NavbarTypes/>
+    <br></br>
+    <br>
+    </br>
+    <br></br>
       <HeroSection />
-      <hr style={styles.hr} />
+
       {/* <Filter />
       <ProductCard /> */}
       {/* <div className="flex justify-center -mt-10 mb-4">
@@ -25,20 +31,28 @@ function Home() {
       </div> */}
       {/* <Popular/> */}
       <br />
-      <Card />
+      {/* <Card />
       <hr style={styles.hr} />
       <Banner />
-      <hr style={styles.hr} />
+      <hr style={styles.hr} /> */}
       <br />
       <Categories />
-      <hr style={styles.hr} />
+      <br />
+      <br />
+      <br />
       <Track />
       <br />
-      <hr style={styles.hr} />
+      <br />
+      <br />
       <Testimonial />
       <br />
-      <hr style={styles.hr} />
+      <br/>
+      <br />
+      <Banner />
+      <br/>
+      <br/>
     </Layout>
+    </div>
   );
 }
 

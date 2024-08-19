@@ -1,85 +1,134 @@
-import React, { useContext } from "react";
-import myContext from "../../context/data/myContext";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ethnic from '../../../dist/assets/ethnic.jpg';
+import suit from '../../../dist/assets/suit.jpg';
+import western from '../../../dist/assets/western.jpg';
+import trendy from '../../../dist/assets/trendy.jpg';
+import chic from '../../../dist/assets/chic.jpg';
+import handbags from '../../../dist/assets/handbags.jpg';
 
-function Testimonial() {
-  const context = useContext(myContext);
-  const { mode } = context;
+
+const Testimonial = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const navigate = useNavigate();
+
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
+  const handleImageClick = (href) => {
+    navigate(href);
+  };
+
+  const items = [
+    {
+      src: ethnic,
+      text: "FEELING ETHNIC",
+      href: "/ethnic",
+    },
+    {
+      src: suit,
+      text: "FEELING AESTHETIC",
+      href: "/pakistani-suits",
+    },
+    {
+      src: western,
+      text: "FEELING HOT",
+      href: "/western",
+    },
+    {
+      src: trendy,
+      text: "FEELING TRENDY",
+      href: "/korean-trendy",
+    },
+    {
+      src: chic,
+      text: "FEELING CHIC",
+      href: "/jewellery",
+    },
+    {
+      src: handbags,
+      text: "FEELING COOL",
+      href: "/handbags",
+    },
+  ];
 
   return (
     <div>
-      <section>
-        <div className="container mx-auto px-5 py-10">
-          <h1
-            className="text-center text-5xl font-bold"
-            style={{ color: mode === "dark" ? "white" : "" }}
+      <h1 style={styles.heading}>PICK YOUR MOOD</h1>
+      <div style={styles.container}>
+        {items.map((item, index) => (
+          <div
+            key={index}
+            style={styles.slide}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => handleImageClick(item.href)}
           >
-            Testimonial
-          </h1>
-          <h2
-            className="text-center text-2xl font-semibold mb-10"
-            style={{ color: mode === "dark" ? "white" : "" }}
-          >
-            What our <span className="text-orange">customers</span> are saying
-          </h2>
-          <div className="flex flex-row gap-6 justify-center">
-            {[
-              {
-                src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYtlLhtgpftB-2uN1FEsgA73NfzpuDARToaw&s",
-                text: "The copy has come out very well. Thank you for the attention to detail and due diligence. All the work delivered by your team meets our expectations and we can now proceed with further tasks for my eCommerce store.",
-                name: "John Doe",
-                position: "Senior Product Designer",
-              },
-              {
-                src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbeQyLEWovHA0mROqcGC1ddJBH8jWA_gFxToy-o3Of97yoPZTTArsYrQK7DRzqAsF4Bq8&usqp=CAU",
-                text: "While I was really struggling to manage multiple sales channels, I do not have to worry about it at all. All thanks to your team! You guys have been doing an excellent job in effortlessly managing all my channels and bringing in smooth sales. Highly impressed with your services.",
-                name: "Terry White",
-                position: "eCommerce Store Owner",
-              },
-              {
-                src: "https://www.shareicon.net/data/512x512/2016/06/26/786560_people_512x512.png",
-                text: "Your team has been doing an excellent job in handling multi-tasks, prioritizing tasks effectively, and delivering work in a turnaround time. Keep up the great work. I understand that certain tasks may involve specific procedures that can be confusing. However, thank you for your open-mindedness and resilience.",
-                name: "Fred Thomson",
-                position: "CEO & Founder",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="w-80 p-6 border border-gray-300 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-                style={{ backgroundColor: mode === "dark" ? "#333" : "#fff" }}
-              >
-                <div className="h-full text-center">
-                  <img
-                    alt="testimonial"
-                    className="w-24 h-24 mb-6 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
-                    src={item.src}
-                  />
-                  <p
-                    style={{ color: mode === "dark" ? "white" : "#333" }}
-                    className="leading-relaxed mb-4"
-                  >
-                    {item.text}
-                  </p>
-                  <span className="inline-block h-1 w-12 rounded bg-orange mt-6 mb-4" />
-                  <h2
-                    style={{ color: mode === "dark" ? "#ff4162" : "#333" }}
-                    className="text-gray-900 font-medium title-font tracking-wider text-sm uppercase"
-                  >
-                    {item.name}
-                  </h2>
-                  <p
-                    style={{ color: mode === "dark" ? "white" : "#555" }}
-                    className="text-gray-500"
-                  >
-                    {item.position}
-                  </p>
-                </div>
-              </div>
-            ))}
+            <div style={styles.imageDiv}>
+              <img src={item.src} alt={item.text} style={styles.image} />
+              <div style={styles.text}>{item.text}</div>
+            </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+const styles = {
+  heading: {
+    fontFamily: "fantasy",
+    fontSize: "60px",
+    textAlign: "center",
+    margin: "20px 0",
+    color: "white",
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "30px",
+    padding: "0",
+    justifyContent: "center",
+  },
+  slide: {
+    position: "relative",
+    flex: "0 0 calc(33.333% - 40px)",
+    overflow: "hidden",
+    borderRadius: "10px",
+    transition: "box-shadow 0.3s ease-in-out",
+    cursor: "pointer", // Change cursor on hover
+  },
+  imageDiv: {
+    background: "linear-gradient(to right, #a67c00, #bf9b30, #ffbf00, #ffcf40)",
+    position: "relative",
+    padding: "10px",
+    borderRadius: '10px',
+  },
+  image: {
+    width: "100%",
+    height: "300px",
+    objectFit: "cover",
+    display: "block",
+  },
+  text: {
+    position: "absolute",
+    bottom: "10px",
+    left: "10px",
+    right: "10px",
+    fontFamily: "fantasy",
+    marginBottom: "20px",
+    fontWeight: "bold",
+    color: "white",
+    backgroundColor: "black",
+    padding: "12px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    textAlign: "center",
+  },
+};
 
 export default Testimonial;

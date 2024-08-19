@@ -1,35 +1,40 @@
 .hero-section {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .slide {
-    position: relative;
-    width: 100%;
-    height: 500px; /* Set a fixed height for all slides */
-  }
-  
-  .slide-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(0px); /* Apply blur effect to the images */
-  }
-  
-  .slide-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border: 2px solid white;
-    font-size: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 5px;
-  }
-  
+  position: relative;
+  width: 100%;
+  max-width: 1500px; /* Set a max-width to prevent stretching */
+  margin: 0 auto; /* Center horizontally */
+  padding: 20px; /* Optional: Add padding if needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Set a fixed height for all slides */
+}
+.slide-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat; /* Adjust as needed */
+  background-size: 20px 20px; /* Adjust based on your border image size */
+  background-position: center;
+  border-radius: 20px;
+  filter: blur(0px); /* Apply blur effect if needed */
+}
+
+.slide-text {
+  position: absolute;
+  top: 70%; /* Position the text 70% from the top of the container */
+  color: white;
+  margin-left: 20px; /* Set the left margin to 20px */
+  margin-right: 20px; /* Set the right margin to 20px */
+  background-color: black;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: calc(100% - 40px); /* Adjust the width to account for the left and right margins */
+}
+

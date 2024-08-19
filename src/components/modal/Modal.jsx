@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import border_img from '../../../dist/assets/border_img.jpg';
 
 export default function Modal({
   name,
@@ -24,11 +25,17 @@ export default function Modal({
 
   return (
     <>
-      <div className="  text-center rounded-lg text-white font-bold">
+      <div className="text-center rounded-lg text-white font-bold">
         <button
           type="button"
           onClick={openModal}
-          className="w-full  bg-gradient-to-r from-[#f19257] to-[#2f4fe1] hover:bg-transparent hover:text-white hover:border border-blue-800 py-2 text-center rounded-lg text-white font-bold active:scale-90 "
+          className="w-[200px]  hover:bg-transparent hover:text-black hover:border border-blue-800 py-2 text-center rounded-lg text-black font-bold active:scale-90 "
+           style={{  backgroundImage: `url(${border_img})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                            borderRadius: "20px",
+                            marginTop:"20px",
+                            backgroundPosition: 'center'}}
         >
           Buy Now
         </button>
@@ -45,7 +52,7 @@ export default function Modal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-blue bg-opacity-25" />
+           <div className="fixed inset-0 bg-transparent bg-opacity-60" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -59,7 +66,7 @@ export default function Modal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl p-2  text-left align-middle shadow-xl transition-all bg-gray-50">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl p-2  text-left align-middle shadow-xl transition-all bg-black">
                   <section className="">
                     <div className="flex flex-col items-center justify-center py-8 mx-auto  lg:py-0">
                       <div className="w-full  rounded-lg md:mt-0 sm:max-w-md xl:p-0 ">
@@ -68,7 +75,7 @@ export default function Modal({
                             <div>
                               <label
                                 htmlFor="name"
-                                className="block mb-2 text-sm font-medium text-gray-900"
+                                className="block mb-2 text-sm font-medium text-white"
                               >
                                 Enter Full Name
                               </label>
@@ -85,7 +92,7 @@ export default function Modal({
                             <div>
                               <label
                                 htmlFor="email"
-                                className="block mb-2 text-sm font-medium text-gray-900"
+                                className="block mb-2 text-sm font-medium text-white"
                               >
                                 Enter Full Address
                               </label>
@@ -102,7 +109,7 @@ export default function Modal({
                             <div>
                               <label
                                 htmlFor="pincode"
-                                className="block mb-2 text-sm font-medium text-gray-900"
+                                className="block mb-2 text-sm font-medium text-white"
                               >
                                 Enter Pincode
                               </label>
@@ -119,7 +126,7 @@ export default function Modal({
                             <div>
                               <label
                                 htmlFor="mobileNumber"
-                                className="block mb-2 text-sm font-medium text-gray-900"
+                                className="block mb-2 text-sm font-medium text-white"
                               >
                                 Enter Mobile Number
                               </label>
@@ -140,7 +147,16 @@ export default function Modal({
                               closeModal();
                             }}
                             type="button"
-                            className="focus:outline-none w-full text-white bg-orange hover:bg-orange  outline-0 font-medium rounded-lg text-sm px-5 py-2.5 "
+                            className="focus:outline-none w-full text-black    outline-0 font-medium rounded-lg text-sm px-5 py-2.5 "
+                            style={{  backgroundImage: `url(${border_img})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                            borderRadius: "20px",
+                            font: "bold",
+                            fontWeight: "bold",
+                            fontSize: "20px",
+                            marginTop:"20px",
+                            backgroundPosition: 'center'}}
                           >
                             Order Now
                           </button>

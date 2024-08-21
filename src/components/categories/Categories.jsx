@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import borderImage from '../../../dist/assets/border_img.jpg'; // Adjust path based on your project structure
-import jewellery from "../../../dist/assets/sjewellery.jpg"; // Corrected import
+import borderImage from '../../../dist/assets/border_img.jpg';
+import jewellery from "../../../dist/assets/sjewellery.jpg";
 import korean from "../../../dist/assets/korean.jpg";
 import handbags from "../../../dist/assets/handbags.jpg";
 import ethnic from "../../../dist/assets/ethnic.jpg";
 import western from "../../../dist/assets/western.jpg";
-import suit from '../../../dist/assets/suit.jpg';
-
+import accessories from '../../../dist/assets/jewellery.jpg'; 
 
 const Categories = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -27,9 +26,9 @@ const Categories = () => {
 
   const items = [
     {
-      src: jewellery, // Use the imported image directly
-      text: "Accessories",
-      href: "/accessories",
+      src: jewellery,
+      text: "Jewellery",
+      href: "/jewellery",
     },
     {
       src: korean,
@@ -42,19 +41,19 @@ const Categories = () => {
       href: "/handbags",
     },
     {
-      src: ethnic,
-      text: "Ethnic",
-      href: "/ethnic",
-    },
-    {
       src: western,
       text: "Western",
       href: "/western",
     },
     {
-      src: suit,
-      text: "Pakistani Suits",
-      href: "/pakistani-suits",
+      src: ethnic,
+      text: "Ethnic",
+      href: "/ethnic",
+    },
+    {
+      src: accessories,
+      text: "Accessories",
+      href: "/accessories",
     },
   ];
 
@@ -89,10 +88,13 @@ const Categories = () => {
 const styles = {
   heading: {
     fontFamily: "fantasy",
-    fontSize: "60px",
+    fontSize: "4vw", // Responsive font size
     textAlign: "center",
     margin: "20px 0",
     color: "white",
+    '@media (max-width: 768px)': {
+      fontSize: "6vw", // Larger font size for smaller screens
+    },
   },
   container: {
     display: "flex",
@@ -111,9 +113,10 @@ const styles = {
   },
   imageDiv: {
     position: 'relative',
-    padding: "10px",
+    padding: "5px",
     backgroundImage: `url(${borderImage})`,
     backgroundRepeat: 'round',
+    borderRadius: "10px",
   },
   image: {
     width: "100%",
@@ -126,7 +129,6 @@ const styles = {
     bottom: "10px",
     left: "10px",
     right: "10px",
-    fontWeight: "bold",
     color: "white",
     fontFamily: "fantasy",
     backgroundColor: "black",
@@ -135,6 +137,10 @@ const styles = {
     textAlign: "center",
     opacity: 1,
     transition: "opacity 0.3s ease-in-out",
+    fontSize: "2vw", // Responsive font size
+    '@media (max-width: 768px)': {
+      fontSize: "4vw", // Larger font size for smaller screens
+    },
   },
   slideHover: {
     boxShadow: "0 8px 12px rgba(0, 0, 0, 0.3)",

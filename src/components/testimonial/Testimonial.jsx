@@ -6,7 +6,7 @@ import western from '../../../dist/assets/western.jpg';
 import trendy from '../../../dist/assets/trendy.jpg';
 import chic from '../../../dist/assets/chic.jpg';
 import handbags from '../../../dist/assets/handbags.jpg';
-
+import borderImage from '../../../dist/assets/border_img.jpg'; // Adjust path based on your project structure
 
 const Testimonial = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -83,10 +83,13 @@ const Testimonial = () => {
 const styles = {
   heading: {
     fontFamily: "fantasy",
-    fontSize: "60px",
+    fontSize: "4vw", // Responsive font size
     textAlign: "center",
     margin: "20px 0",
     color: "white",
+    '@media (max-width: 768px)': {
+      fontSize: "6vw", // Larger font size for smaller screens
+    },
   },
   container: {
     display: "flex",
@@ -104,10 +107,9 @@ const styles = {
     cursor: "pointer", // Change cursor on hover
   },
   imageDiv: {
-    background: "linear-gradient(to right, #a67c00, #bf9b30, #ffbf00, #ffcf40)",
-    position: "relative",
-    padding: "10px",
-    borderRadius: '10px',
+    padding: "5px",
+    backgroundImage: `url(${borderImage})`,
+    backgroundRepeat: 'round',
   },
   image: {
     width: "100%",
@@ -120,15 +122,19 @@ const styles = {
     bottom: "10px",
     left: "10px",
     right: "10px",
-    fontFamily: "fantasy",
-    marginBottom: "20px",
-    fontWeight: "bold",
     color: "white",
+    fontFamily: "fantasy",
     backgroundColor: "black",
-    padding: "12px",
+    padding: "10px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
     textAlign: "center",
-  },
+    opacity: 1,
+    transition: "opacity 0.3s ease-in-out",
+    fontSize: "2vw", // Responsive font size
+    '@media (max-width: 768px)': {
+      fontSize: "4vw", // Larger font size for smaller screens
+    },
+},
 };
 
 export default Testimonial;

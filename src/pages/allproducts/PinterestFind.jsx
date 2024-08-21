@@ -51,7 +51,7 @@ const PinterestFind = () => {
   return (
     <Layout>
       <div className="flex flex-col sm:flex-row" style={{ backgroundColor: "black", minHeight: "100vh" }}>
-        <div className="h-full sticky top-24 my-12">
+        <div className="w-full sm:w-1/4 sm:sticky sm:top-24 my-4 sm:my-12">
           <Filter 
             setFilterType={setFilterType} 
             setFilterFabric={setFilterFabric} 
@@ -59,7 +59,7 @@ const PinterestFind = () => {
             setSortPrice={setSortPrice}
           />
         </div>
-        <div className="text-red-600 body-font flex-grow">
+        <div className="flex-grow text-red-600 body-font">
           <div className="container px-5 py-8 md:py-16 mx-auto">
             <h1 className="text-gold mb-4">Pinterest Finds</h1>
             <div className="flex flex-wrap -m-4">
@@ -69,7 +69,7 @@ const PinterestFind = () => {
                   <div
                     onClick={() => (window.location.href = `/productinfo/${id}`)}
                     key={id}
-                    className="p-4 md:w-1/4 drop-shadow-lg cursor-pointer"
+                    className="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 drop-shadow-lg cursor-pointer"
                   >
                     <div
                       className="h-full transition-shadow duration-300 ease-in-out rounded-2xl overflow-hidden"
@@ -91,7 +91,7 @@ const PinterestFind = () => {
                           <h1
                             className="title-font text-lg font-medium mb-3"
                             style={{
-                              color: mode === "dark" ? "white" : "white",
+                              color: mode === "dark" ? "white" : "black",
                             }}
                           >
                             {title}
@@ -99,7 +99,7 @@ const PinterestFind = () => {
                           <p
                             className="leading-relaxed mb-3"
                             style={{
-                              color: mode === "dark" ? "white" : "white",
+                              color: mode === "dark" ? "white" : "black",
                             }}
                           >
                             Rs.{price}

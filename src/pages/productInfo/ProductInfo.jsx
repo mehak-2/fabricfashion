@@ -12,6 +12,7 @@ import drop_img from '../../../dist/assets/drop_img.png';
 import cart_img from '../../../dist/assets/cart_image.png';
 import heart_img from '../../../dist/assets/heart_icon.png';
 
+
 function ProductInfo() {
   const context = useContext(myContext);
   const { loading, setLoading } = context;

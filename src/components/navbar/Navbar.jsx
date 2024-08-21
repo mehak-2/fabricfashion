@@ -171,7 +171,7 @@ function Navbar() {
     <input
       type="text"
       placeholder="Search..."
-      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
+      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-white dark:text-white"
     />
   </div>
 </Dialog.Panel>
@@ -307,7 +307,7 @@ function Navbar() {
         <input
           type="text"
           placeholder="Search here"
-          className="hidden lg:block w-[500px] px-10 py-1 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black dark:bg-black dark:text-white placeholder:text-black"
+          className="hidden lg:block w-[500px] px-10 py-1 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black dark:bg-white dark:text-black placeholder:text-black"
         />
         <Link
       to={"/cart"}

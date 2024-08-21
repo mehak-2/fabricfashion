@@ -38,7 +38,6 @@ import Western from "./pages/allproducts/Western";
 import UpdateOrderStatus from "./pages/admin/page/UpdateOrderStatus";
 
 
-
 function App() {
   return (
     <MyState>
@@ -61,7 +60,7 @@ function App() {
           <Route path="/ethnic" element={<Ethnic />} />
           <Route path="/jewellery" element={<Jewellery />} />
           <Route path="/korean-trendy" element={<KoreanTrendy />} />
-          <Route path="/pinterest-find" element={<PinterestFind />} />
+          <Route path="/pinterest-finds" element={<PinterestFind />} />
           <Route path="/anarkali-dress" element={<AnarkaliDress />} />
           <Route path="/account" element={<Account />} />
           <Route path="/login" element={<Login />} />
